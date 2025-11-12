@@ -1,0 +1,12 @@
+# Ignore everything in the root folder
+*
+
+# EXCEPTION: Keep the .gitignore file itself
+!.gitignore
+
+# EXCEPTION: Keep the two main folders
+!/capstone_backend/
+!/capstone_frontend/
+
+# Ignore Git configuration if it appears elsewhere
+.git/
