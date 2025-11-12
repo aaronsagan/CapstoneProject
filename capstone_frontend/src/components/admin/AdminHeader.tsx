@@ -34,7 +34,7 @@ export const AdminHeader = () => {
   };
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center gap-3 border-b bg-background pl-4 pr-4 shadow-sm">
+    <header className="sticky top-0 z-10 flex h-14 sm:h-16 items-center gap-2 sm:gap-3 border-b bg-background px-2 sm:px-4 shadow-sm">
       <SidebarTrigger className="-ml-1" />
 
       <div className="flex-1" />
@@ -64,8 +64,8 @@ export const AdminHeader = () => {
         <DropdownMenuContent align="end" className="w-56">
           <DropdownMenuLabel>
             <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">{user?.name || 'Admin'}</p>
-              <p className="text-xs leading-none text-muted-foreground">{user?.email || ''}</p>
+              <p className="text-sm font-medium leading-none truncate max-w-[200px]">{user?.name || 'Admin'}</p>
+              <p className="text-xs leading-none text-muted-foreground truncate max-w-[200px]">{user?.email || ''}</p>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />

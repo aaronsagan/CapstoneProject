@@ -35,7 +35,7 @@ const SEVERITY_LEVELS = [
 
 export function ReportDialog({ open, onOpenChange, targetType, targetId, targetName }: ReportDialogProps) {
   const [reportType, setReportType] = useState("");
-  const [severity, setSeverity] = useState("medium");
+  const [severity, setSeverity] = useState<"high" | "low" | "medium">("medium");
   const [details, setDetails] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -75,9 +75,9 @@ export function ReportDialog({ open, onOpenChange, targetType, targetId, targetN
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="max-w-[calc(100vw-2rem)] sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
+          <DialogTitle className="flex items-center gap-2 text-base sm:text-lg">
             <AlertTriangle className="h-5 w-5 text-orange-500" />
             Report {targetType.charAt(0).toUpperCase() + targetType.slice(1)}
           </DialogTitle>

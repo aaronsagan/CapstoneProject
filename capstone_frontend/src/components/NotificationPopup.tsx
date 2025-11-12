@@ -207,24 +207,24 @@ export function NotificationPopup({ notificationsPath }: NotificationPopupProps)
         </Button>
       </PopoverTrigger>
       <PopoverContent 
-        className="w-[360px] sm:w-[420px] p-0 shadow-lg border-border" 
+        className="w-[calc(100vw-2rem)] max-w-[360px] sm:max-w-[420px] p-0 shadow-lg border-border" 
         align="end"
         sideOffset={8}
       >
         {/* Header */}
-        <div className="p-4 pb-3">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-2xl font-bold">Notifications</h3>
+        <div className="p-3 sm:p-4 pb-2 sm:pb-3">
+          <div className="flex items-center justify-between mb-2 sm:mb-3">
+            <h3 className="text-lg sm:text-2xl font-bold">Notifications</h3>
             <Button
               variant="ghost"
               size="icon"
-              className="h-9 w-9 rounded-full hover:bg-accent"
+              className="h-8 w-8 sm:h-9 sm:w-9 rounded-full hover:bg-accent"
               onClick={() => {
                 setOpen(false);
                 navigate(notificationsPath);
               }}
             >
-              <Settings className="h-5 w-5" />
+              <Settings className="h-4 w-4 sm:h-5 sm:w-5" />
             </Button>
           </div>
           
@@ -234,11 +234,12 @@ export function NotificationPopup({ notificationsPath }: NotificationPopupProps)
               <Button
                 variant="secondary"
                 size="sm"
-                className="flex-1 h-9 rounded-lg font-medium"
+                className="flex-1 h-8 sm:h-9 rounded-lg font-medium text-xs sm:text-sm"
                 onClick={markAllAsRead}
               >
-                <CheckCheck className="h-4 w-4 mr-2" />
-                Mark all as read
+                <CheckCheck className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Mark all as read</span>
+                <span className="sm:hidden">Mark all read</span>
               </Button>
             </div>
           )}
@@ -247,88 +248,90 @@ export function NotificationPopup({ notificationsPath }: NotificationPopupProps)
         <Separator />
 
         {/* Notifications List */}
-        <ScrollArea className="h-[400px] sm:h-[500px]">
+        <ScrollArea className="h-[60vh] max-h-[400px] sm:max-h-[500px]">
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mb-3"></div>
-              <p className="text-sm">Loading notifications...</p>
+            <div className="flex flex-col items-center justify-center py-8 sm:py-12 text-muted-foreground">
+              <div className="animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-primary mb-2 sm:mb-3"></div>
+              <p className="text-xs sm:text-sm">Loading notifications...</p>
             </div>
           ) : notifications.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-16 px-4 text-muted-foreground">
-              <div className="bg-muted rounded-full p-4 mb-4">
-                <Bell className="h-12 w-12 opacity-50" />
+            <div className="flex flex-col items-center justify-center py-12 sm:py-16 px-4 text-muted-foreground">
+              <div className="bg-muted rounded-full p-3 sm:p-4 mb-3 sm:mb-4">
+                <Bell className="h-8 w-8 sm:h-12 sm:w-12 opacity-50" />
               </div>
-              <p className="font-semibold text-lg mb-1">No notifications</p>
-              <p className="text-sm text-center">You're all caught up! Check back later for updates.</p>
+              <p className="font-semibold text-base sm:text-lg mb-1">No notifications</p>
+              <p className="text-xs sm:text-sm text-center">You're all caught up! Check back later for updates.</p>
             </div>
           ) : (
             <div>
               {notifications.map((notification, index) => (
                 <div key={notification.id}>
                   <div
-                    className={`p-4 hover:bg-accent/50 transition-all cursor-pointer group ${
+                    className={`p-3 sm:p-4 hover:bg-accent/50 transition-all cursor-pointer group ${
                       !notification.read ? 'bg-primary/5' : ''
                     }`}
                   >
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-start gap-2 sm:gap-3">
                       {/* Icon */}
                       <div className="flex-shrink-0 mt-0.5">
-                        <div className={`w-14 h-14 rounded-full flex items-center justify-center ${
+                        <div className={`w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center ${
                           !notification.read ? 'bg-primary/10' : 'bg-muted'
                         }`}>
-                          {getNotificationIcon(notification.type)}
+                          <div className="text-lg sm:text-2xl">
+                            {getNotificationIcon(notification.type)}
+                          </div>
                         </div>
                       </div>
                       
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2 mb-1">
-                          <div className="flex-1">
-                            <p className="font-semibold text-sm leading-tight line-clamp-2">
+                          <div className="flex-1 min-w-0">
+                            <p className="font-semibold text-xs sm:text-sm leading-tight line-clamp-2">
                               {notification.title}
                             </p>
-                            <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+                            <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 mt-0.5 sm:mt-1">
                               {notification.message}
                             </p>
                           </div>
                           {!notification.read && (
-                            <div className="h-3 w-3 rounded-full bg-blue-600 flex-shrink-0 mt-1" />
+                            <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-blue-600 flex-shrink-0 mt-1" />
                           )}
                         </div>
                         
                         {/* Time and Actions */}
-                        <div className="flex items-center justify-between mt-2">
-                          <span className="text-xs text-primary font-medium">
+                        <div className="flex items-center justify-between mt-1.5 sm:mt-2">
+                          <span className="text-[10px] sm:text-xs text-primary font-medium">
                             {formatTimeAgo(notification.created_at)}
                           </span>
                           
-                          {/* Action Buttons - Show on hover */}
-                          <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                          {/* Action Buttons - Always visible on mobile, hover on desktop */}
+                          <div className="flex items-center gap-0.5 sm:gap-1 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                             {!notification.read && (
                               <Button
                                 variant="ghost"
                                 size="sm"
-                                className="h-8 px-2 hover:bg-primary/10"
+                                className="h-7 w-7 sm:h-8 p-0 sm:px-2 hover:bg-primary/10"
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   markAsRead(notification.id);
                                 }}
                                 title="Mark as read"
                               >
-                                <Check className="h-4 w-4" />
+                                <Check className="h-3 w-3 sm:h-4 sm:w-4" />
                               </Button>
                             )}
                             <Button
                               variant="ghost"
                               size="sm"
-                              className="h-8 px-2 text-destructive hover:bg-destructive/10 hover:text-destructive"
+                              className="h-7 w-7 sm:h-8 p-0 sm:px-2 text-destructive hover:bg-destructive/10 hover:text-destructive"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 deleteNotification(notification.id);
                               }}
                               title="Delete"
                             >
-                              <Trash2 className="h-4 w-4" />
+                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
                           </div>
                         </div>
@@ -349,7 +352,7 @@ export function NotificationPopup({ notificationsPath }: NotificationPopupProps)
             <div className="p-2">
               <Button
                 variant="ghost"
-                className="w-full justify-center hover:bg-accent rounded-lg h-11 font-medium text-primary"
+                className="w-full justify-center hover:bg-accent rounded-lg h-10 sm:h-11 font-medium text-primary text-sm"
                 onClick={() => {
                   setOpen(false);
                   navigate(notificationsPath);

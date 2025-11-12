@@ -204,40 +204,26 @@ export default function AdminActionLogs() {
   };
 
   return (
-    <div className="space-y-6">
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex justify-between items-center"
-      >
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-            Action Logs
-          </h1>
-          <p className="text-muted-foreground mt-2 text-lg">
-            Monitor all user activities and administrative actions
-          </p>
-        </div>
-        <Button onClick={exportLogs} className="flex items-center gap-2 hover:scale-105 transition-transform">
-          <Download className="h-4 w-4" />
-          Export CSV
-        </Button>
+    <div className="space-y-4 sm:space-y-6">
+      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground">Action Logs</h1>
+        <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">Monitor all user activities and system actions</p>
       </motion.div>
 
       {/* Statistics Cards */}
       {statistics && (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-4">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
             <Card className="border-l-4 border-l-blue-500 bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/30 dark:to-background">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <ActivityIcon className="h-4 w-4" />
-                  Total Activities
+                <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground flex items-center gap-1 sm:gap-2">
+                  <ActivityIcon className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" />
+                  <span className="truncate">Total Activities</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-blue-600">{statistics.total || 0}</div>
-                <p className="text-xs text-muted-foreground mt-1">All user actions</p>
+              <CardContent className="pb-3">
+                <div className="text-2xl sm:text-3xl font-bold text-blue-600">{statistics.total || 0}</div>
+                <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 truncate">All user actions</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -245,14 +231,14 @@ export default function AdminActionLogs() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
             <Card className="border-l-4 border-l-green-500 bg-gradient-to-br from-green-50 to-white dark:from-green-950/30 dark:to-background">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <Heart className="h-4 w-4" />
-                  Donations
+                <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground flex items-center gap-1 sm:gap-2">
+                  <Heart className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" />
+                  <span className="truncate">Donations</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-green-600">{statistics.donations || 0}</div>
-                <p className="text-xs text-muted-foreground mt-1">Total donation actions</p>
+              <CardContent className="pb-3">
+                <div className="text-2xl sm:text-3xl font-bold text-green-600">{statistics.donations || 0}</div>
+                <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 truncate">Total donation actions</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -260,14 +246,14 @@ export default function AdminActionLogs() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
             <Card className="border-l-4 border-l-purple-500 bg-gradient-to-br from-purple-50 to-white dark:from-purple-950/30 dark:to-background">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <TrendingUp className="h-4 w-4" />
-                  Campaigns Created
+                <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground flex items-center gap-1 sm:gap-2">
+                  <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" />
+                  <span className="truncate">Campaigns Created</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-purple-600">{statistics.campaigns || 0}</div>
-                <p className="text-xs text-muted-foreground mt-1">New campaigns</p>
+              <CardContent className="pb-3">
+                <div className="text-2xl sm:text-3xl font-bold text-purple-600">{statistics.campaigns || 0}</div>
+                <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 truncate">New campaigns</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -275,14 +261,14 @@ export default function AdminActionLogs() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
             <Card className="border-l-4 border-l-cyan-500 bg-gradient-to-br from-cyan-50 to-white dark:from-cyan-950/30 dark:to-background">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <UserPlus className="h-4 w-4" />
-                  New Registrations
+                <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground flex items-center gap-1 sm:gap-2">
+                  <UserPlus className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" />
+                  <span className="truncate">New Registrations</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-cyan-600">{statistics.registrations || 0}</div>
-                <p className="text-xs text-muted-foreground mt-1">User signups</p>
+              <CardContent className="pb-3">
+                <div className="text-2xl sm:text-3xl font-bold text-cyan-600">{statistics.registrations || 0}</div>
+                <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 truncate">User signups</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -290,15 +276,15 @@ export default function AdminActionLogs() {
       )}
 
       {/* Filters */}
-      <Card>
+      <Card className="w-full">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
             <Filter className="h-5 w-5" />
             Filters
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
@@ -403,9 +389,9 @@ export default function AdminActionLogs() {
       </Card>
 
       {/* Logs List */}
-      <Card>
+      <Card className="w-full">
         <CardHeader>
-          <CardTitle>Action Logs ({(logs || []).length})</CardTitle>
+          <CardTitle className="text-base sm:text-lg">Action Logs ({(logs || []).length})</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -419,63 +405,62 @@ export default function AdminActionLogs() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className="border rounded-lg p-4 hover:shadow-md transition-all hover:border-indigo-300 bg-card"
+                  className="border rounded-lg p-3 sm:p-4 hover:shadow-md transition-all hover:border-indigo-300 bg-card overflow-hidden"
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-2 sm:gap-4">
                     {/* Icon */}
-                    <div className={`p-3 rounded-full ${colorClass} flex-shrink-0`}>
-                      <Icon className="h-5 w-5" />
+                    <div className={`p-2 sm:p-3 rounded-full ${colorClass} flex-shrink-0`}>
+                      <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                     </div>
                     
                     {/* Content */}
-                    <div className="flex-1 space-y-2">
-                      <div className="flex items-start justify-between">
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2">
-                            {getActionBadge(log.action_type)}
-                            <span className="text-sm text-muted-foreground">
+                    <div className="flex-1 min-w-0 space-y-2">
+                      <div className="flex flex-col lg:flex-row items-start lg:justify-between gap-2">
+                        <div className="space-y-1 min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-2">{getActionBadge(log.action_type)}
+                            <span className="text-xs sm:text-sm text-muted-foreground">
                               by
                             </span>
-                            <div className="flex items-center gap-2">
-                              <Avatar className="h-6 w-6">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <Avatar className="h-5 w-5 sm:h-6 sm:w-6 shrink-0">
                                 <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${log.user.email}`} />
-                                <AvatarFallback className="text-xs">
+                                <AvatarFallback className="text-[10px] sm:text-xs">
                                   {log.user.name.split(' ').map(n => n[0]).join('')}
                                 </AvatarFallback>
                               </Avatar>
-                              <div className="flex flex-col">
-                                <span className="font-medium text-sm">{log.user.name}</span>
-                                <span className="text-xs text-muted-foreground capitalize">{log.user.role}</span>
+                              <div className="flex flex-col min-w-0">
+                                <span className="font-medium text-xs sm:text-sm truncate">{log.user.name}</span>
+                                <span className="text-[10px] sm:text-xs text-muted-foreground capitalize truncate">{log.user.role}</span>
                               </div>
                             </div>
                           </div>
                           {log.description && (
-                            <p className="text-sm text-muted-foreground mt-1">
+                            <p className="text-xs sm:text-sm text-muted-foreground mt-1 break-words">
                               {log.description}
                             </p>
                           )}
                           {log.target_type && (
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-xs sm:text-sm text-muted-foreground break-words">
                               <span className="font-medium">Target:</span> {log.target_type} #{log.target_id}
                             </p>
                           )}
                         </div>
-                        <div className="text-right text-xs text-muted-foreground">
-                          <p className="font-medium">{new Date(log.created_at).toLocaleString()}</p>
+                        <div className="text-left lg:text-right text-[10px] sm:text-xs text-muted-foreground shrink-0">
+                          <p className="font-medium break-words">{new Date(log.created_at).toLocaleString()}</p>
                           {log.ip_address && (
-                            <p className="mt-1 flex items-center gap-1 justify-end">
-                              <span className="inline-block w-2 h-2 bg-green-500 rounded-full"></span>
-                              {log.ip_address}
+                            <p className="mt-1 flex items-center gap-1 justify-start lg:justify-end">
+                              <span className="inline-block w-2 h-2 bg-green-500 rounded-full shrink-0"></span>
+                              <span className="truncate">{log.ip_address}</span>
                             </p>
                           )}
                         </div>
                       </div>
                       {log.details && (
-                        <details className="text-sm">
+                        <details className="text-xs sm:text-sm">
                           <summary className="cursor-pointer text-indigo-600 hover:underline font-medium">
                             View Details
                           </summary>
-                          <pre className="mt-2 p-3 bg-gray-50 dark:bg-gray-800 rounded text-xs overflow-auto border">
+                          <pre className="mt-2 p-2 sm:p-3 bg-gray-50 dark:bg-gray-800 rounded text-[10px] sm:text-xs overflow-x-auto border max-w-full">
                             {JSON.stringify(log.details, null, 2)}
                           </pre>
                         </details>

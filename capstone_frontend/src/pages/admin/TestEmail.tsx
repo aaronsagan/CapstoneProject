@@ -116,35 +116,36 @@ const TestEmail = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-4xl">
+    <div className="container mx-auto p-3 sm:p-6 max-w-[calc(100vw-2rem)] sm:max-w-4xl">
       {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <Mail className="h-8 w-8 text-primary" />
-          <h1 className="text-3xl font-bold">Email System Testing</h1>
+      <div className="mb-6 sm:mb-8">
+        <div className="flex items-center gap-2 sm:gap-3 mb-2">
+          <Mail className="h-6 w-6 sm:h-8 sm:w-8 text-primary shrink-0" />
+          <h1 className="text-2xl sm:text-3xl font-bold">Email System Testing</h1>
         </div>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground text-sm sm:text-base">
           Test your SMTP configuration and send test emails to verify the email system is working correctly.
         </p>
       </div>
 
       {/* Connection Test Card */}
-      <Card className="mb-6">
+      <Card className="mb-4 sm:mb-6">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Server className="h-5 w-5" />
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <Server className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
             SMTP Connection Test
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-xs sm:text-sm">
             Verify that your server can connect to the SMTP mail server
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
             <Button
               onClick={testConnection}
               disabled={connectionStatus === "testing"}
               variant="outline"
+              className="w-full sm:w-auto"
             >
               {connectionStatus === "testing" && (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -154,15 +155,15 @@ const TestEmail = () => {
 
             {connectionStatus === "success" && (
               <div className="flex items-center gap-2 text-green-600">
-                <CheckCircle2 className="h-5 w-5" />
-                <span className="font-medium">Connected Successfully</span>
+                <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
+                <span className="font-medium text-sm sm:text-base">Connected Successfully</span>
               </div>
             )}
 
             {connectionStatus === "error" && (
               <div className="flex items-center gap-2 text-red-600">
-                <XCircle className="h-5 w-5" />
-                <span className="font-medium">Connection Failed</span>
+                <XCircle className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
+                <span className="font-medium text-sm sm:text-base">Connection Failed</span>
               </div>
             )}
           </div>
@@ -172,23 +173,23 @@ const TestEmail = () => {
       {/* Test Email Card */}
       <Card>
         <CardHeader>
-          <CardTitle>Send Test Email</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-base sm:text-lg">Send Test Email</CardTitle>
+          <CardDescription className="text-xs sm:text-sm">
             Enter an email address to receive a test email and verify the email system is working
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           {/* Info Alert */}
           <Alert>
-            <Info className="h-4 w-4" />
-            <AlertDescription>
+            <Info className="h-4 w-4 shrink-0" />
+            <AlertDescription className="text-xs sm:text-sm">
               The test email will be sent to the address you provide. Check your inbox (and spam folder) after sending.
             </AlertDescription>
           </Alert>
 
           {/* Email Input */}
           <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium">
+            <label htmlFor="email" className="text-xs sm:text-sm font-medium">
               Email Address *
             </label>
             <Input
@@ -203,7 +204,7 @@ const TestEmail = () => {
 
           {/* Name Input */}
           <div className="space-y-2">
-            <label htmlFor="name" className="text-sm font-medium">
+            <label htmlFor="name" className="text-xs sm:text-sm font-medium">
               Recipient Name (Optional)
             </label>
             <Input
@@ -221,17 +222,16 @@ const TestEmail = () => {
             onClick={sendTestEmail}
             disabled={loading || !email}
             className="w-full"
-            size="lg"
           >
             {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Sending Email...
+                <span className="text-sm sm:text-base">Sending Email...</span>
               </>
             ) : (
               <>
                 <Send className="mr-2 h-4 w-4" />
-                Send Test Email
+                <span className="text-sm sm:text-base">Send Test Email</span>
               </>
             )}
           </Button>
@@ -239,8 +239,8 @@ const TestEmail = () => {
           {/* Status Messages */}
           {status === "success" && (
             <Alert className="bg-green-50 border-green-200">
-              <CheckCircle2 className="h-4 w-4 text-green-600" />
-              <AlertDescription className="text-green-800">
+              <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0" />
+              <AlertDescription className="text-green-800 text-xs sm:text-sm">
                 <strong>Success!</strong> {message}
                 <br />
                 <span className="text-sm">Check your inbox at <strong>{email}</strong></span>
@@ -250,8 +250,8 @@ const TestEmail = () => {
 
           {status === "error" && (
             <Alert variant="destructive">
-              <XCircle className="h-4 w-4" />
-              <AlertDescription>
+              <XCircle className="h-4 w-4 shrink-0" />
+              <AlertDescription className="text-xs sm:text-sm">
                 <strong>Error:</strong> {message}
               </AlertDescription>
             </Alert>
@@ -260,14 +260,14 @@ const TestEmail = () => {
       </Card>
 
       {/* Setup Instructions */}
-      <Card className="mt-6">
+      <Card className="mt-4 sm:mt-6">
         <CardHeader>
-          <CardTitle className="text-lg">Setup Instructions</CardTitle>
+          <CardTitle className="text-base sm:text-lg">Setup Instructions</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3 text-sm">
+        <CardContent className="space-y-3 text-xs sm:text-sm">
           <div>
             <strong>1. Configure SMTP in .env file:</strong>
-            <pre className="mt-2 p-3 bg-muted rounded-md overflow-x-auto">
+            <pre className="mt-2 p-2 sm:p-3 bg-muted rounded-md overflow-x-auto text-[10px] sm:text-xs">
 {`MAIL_MAILER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
@@ -281,7 +281,7 @@ MAIL_FROM_NAME="CharityConnect"`}
 
           <div>
             <strong>2. Get Gmail App Password:</strong>
-            <ul className="list-disc list-inside mt-2 space-y-1 text-muted-foreground">
+            <ul className="list-disc list-inside mt-2 space-y-1 text-muted-foreground text-xs sm:text-sm">
               <li>Visit: https://myaccount.google.com/apppasswords</li>
               <li>Enable 2-Step Verification if needed</li>
               <li>Generate a new app password for "Mail"</li>
@@ -291,16 +291,16 @@ MAIL_FROM_NAME="CharityConnect"`}
 
           <div>
             <strong>3. Restart Backend Server:</strong>
-            <p className="text-muted-foreground mt-1">
+            <p className="text-muted-foreground mt-1 text-xs sm:text-sm">
               After updating .env, restart the Laravel server for changes to take effect.
             </p>
           </div>
 
           <Alert>
-            <Info className="h-4 w-4" />
-            <AlertDescription>
+            <Info className="h-4 w-4 shrink-0" />
+            <AlertDescription className="text-xs sm:text-sm">
               <strong>Need help?</strong> Check the{" "}
-              <code className="text-xs bg-muted px-1 py-0.5 rounded">EMAIL_SETUP_GUIDE.md</code>{" "}
+              <code className="text-[10px] sm:text-xs bg-muted px-1 py-0.5 rounded">EMAIL_SETUP_GUIDE.md</code>{" "}
               file in the project root for detailed instructions.
             </AlertDescription>
           </Alert>

@@ -245,25 +245,21 @@ export default function AdminReports() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
       >
         <div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
-            Reports Management
-          </h1>
-          <p className="text-muted-foreground mt-2 text-sm sm:text-base md:text-lg">
-            Review and manage user reports
-          </p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground">Reports Management</h1>
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">Review and moderate reported content and users</p>
         </div>
       </motion.div>
 
       {/* Statistics Cards */}
       {statistics && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-4">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
             <Card className="border-l-4 border-l-blue-500 bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/30 dark:to-background">
               <CardHeader className="pb-2">
@@ -318,68 +314,58 @@ export default function AdminReports() {
       )}
 
       {/* Filters */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Filter className="h-5 w-5" />
-            Filters
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search reports..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-            <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger>
-                <SelectValue placeholder="Filter by status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="pending">Pending</SelectItem>
-                <SelectItem value="under_review">Under Review</SelectItem>
-                <SelectItem value="resolved">Resolved</SelectItem>
-                <SelectItem value="dismissed">Dismissed</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select value={entityTypeFilter} onValueChange={setEntityTypeFilter}>
-              <SelectTrigger>
-                <SelectValue placeholder="Filter by entity type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="user">User</SelectItem>
-                <SelectItem value="charity">Charity</SelectItem>
-                <SelectItem value="campaign">Campaign</SelectItem>
-                <SelectItem value="donation">Donation</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select value={reasonFilter} onValueChange={setReasonFilter}>
-              <SelectTrigger>
-                <SelectValue placeholder="Filter by reason" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Reasons</SelectItem>
-                <SelectItem value="fraud">Fraud</SelectItem>
-                <SelectItem value="fake_proof">Fake Proof</SelectItem>
-                <SelectItem value="inappropriate_content">Inappropriate Content</SelectItem>
-                <SelectItem value="scam">Scam</SelectItem>
-                <SelectItem value="fake_charity">Fake Charity</SelectItem>
-                <SelectItem value="misuse_of_funds">Misuse of Funds</SelectItem>
-                <SelectItem value="spam">Spam</SelectItem>
-                <SelectItem value="harassment">Harassment</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+        <div className="relative">
+          <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search reports..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        <Select value={statusFilter} onValueChange={setStatusFilter}>
+          <SelectTrigger>
+            <SelectValue placeholder="Filter by status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Status</SelectItem>
+            <SelectItem value="pending">Pending</SelectItem>
+            <SelectItem value="under_review">Under Review</SelectItem>
+            <SelectItem value="resolved">Resolved</SelectItem>
+            <SelectItem value="dismissed">Dismissed</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select value={entityTypeFilter} onValueChange={setEntityTypeFilter}>
+          <SelectTrigger>
+            <SelectValue placeholder="Filter by entity type" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Types</SelectItem>
+            <SelectItem value="user">User</SelectItem>
+            <SelectItem value="charity">Charity</SelectItem>
+            <SelectItem value="campaign">Campaign</SelectItem>
+            <SelectItem value="donation">Donation</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select value={reasonFilter} onValueChange={setReasonFilter}>
+          <SelectTrigger>
+            <SelectValue placeholder="Filter by reason" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Reasons</SelectItem>
+            <SelectItem value="fraud">Fraud</SelectItem>
+            <SelectItem value="fake_proof">Fake Proof</SelectItem>
+            <SelectItem value="inappropriate_content">Inappropriate Content</SelectItem>
+            <SelectItem value="scam">Scam</SelectItem>
+            <SelectItem value="fake_charity">Fake Charity</SelectItem>
+            <SelectItem value="misuse_of_funds">Misuse of Funds</SelectItem>
+            <SelectItem value="spam">Spam</SelectItem>
+            <SelectItem value="harassment">Harassment</SelectItem>
+            <SelectItem value="other">Other</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
 
       {/* Reports Cards Grid */}
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

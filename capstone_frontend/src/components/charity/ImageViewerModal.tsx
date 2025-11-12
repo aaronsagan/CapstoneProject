@@ -85,14 +85,14 @@ export function ImageViewerModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden p-0">
-        <DialogHeader className="px-6 pt-6 pb-4 border-b">
-          <DialogTitle>
+      <DialogContent className="max-w-[calc(100vw-2rem)] sm:max-w-4xl max-h-[90vh] overflow-hidden p-0">
+        <DialogHeader className="px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 border-b">
+          <DialogTitle className="text-base sm:text-lg">
             {previewUrl
               ? `Change ${imageType === "profile" ? "Profile Photo" : "Cover Photo"}`
               : `${charityName} - ${imageType === "profile" ? "Profile Photo" : "Cover Photo"}`}
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-xs sm:text-sm">
             {previewUrl
               ? "Preview your new image and confirm to save changes"
               : `View and update your ${imageType === "profile" ? "profile photo" : "cover photo"}`}
@@ -101,14 +101,14 @@ export function ImageViewerModal({
 
         <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
           {/* Image Display Area */}
-          <div className="flex items-center justify-center p-6">
+          <div className="flex items-center justify-center p-3 sm:p-6">
             {previewUrl || imageUrl ? (
               <div className="relative max-w-full">
                 <img
                   src={previewUrl || imageUrl || ""}
                   alt={`${charityName} ${imageType}`}
-                  className={`max-h-[60vh] w-auto rounded-lg shadow-2xl ${
-                    imageType === "profile" ? "max-w-md" : "max-w-full"
+                  className={`max-h-[50vh] sm:max-h-[60vh] w-full sm:w-auto rounded-lg shadow-2xl ${
+                    imageType === "profile" ? "max-w-[280px] sm:max-w-md" : "max-w-full"
                   }`}
                   style={{
                     objectFit: imageType === "profile" ? "cover" : "contain",
@@ -116,14 +116,14 @@ export function ImageViewerModal({
                 />
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center py-16 px-8 text-center">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-100 to-pink-100 dark:from-orange-900/20 dark:to-pink-900/20 flex items-center justify-center mb-4">
-                  <ImageIcon className="h-12 w-12 text-orange-400" />
+              <div className="flex flex-col items-center justify-center py-12 sm:py-16 px-4 sm:px-8 text-center">
+                <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-orange-100 to-pink-100 dark:from-orange-900/20 dark:to-pink-900/20 flex items-center justify-center mb-3 sm:mb-4">
+                  <ImageIcon className="h-8 w-8 sm:h-12 sm:w-12 text-orange-400" />
                 </div>
-                <p className="text-lg font-medium text-muted-foreground mb-2">
+                <p className="text-base sm:text-lg font-medium text-muted-foreground mb-2">
                   No {imageType === "profile" ? "profile photo" : "cover photo"} yet
                 </p>
-                <p className="text-sm text-muted-foreground/70">
+                <p className="text-xs sm:text-sm text-muted-foreground/70">
                   Upload a photo to personalize your charity profile
                 </p>
               </div>
@@ -131,13 +131,13 @@ export function ImageViewerModal({
           </div>
 
           {/* Action Buttons */}
-          <div className="px-6 pb-6 flex justify-end gap-3">
+          <div className="px-4 sm:px-6 pb-4 sm:pb-6 flex flex-col sm:flex-row justify-end gap-2 sm:gap-3">
             {previewUrl ? (
               <>
-                <Button variant="outline" onClick={handleCancel} disabled={isUploading}>
+                <Button variant="outline" onClick={handleCancel} disabled={isUploading} className="w-full sm:w-auto">
                   Cancel
                 </Button>
-                <Button onClick={handleUpload} disabled={isUploading} className="bg-[#F2A024] hover:bg-[#E89015]">
+                <Button onClick={handleUpload} disabled={isUploading} className="bg-[#F2A024] hover:bg-[#E89015] w-full sm:w-auto">
                   {isUploading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -146,7 +146,8 @@ export function ImageViewerModal({
                   ) : (
                     <>
                       <Upload className="mr-2 h-4 w-4" />
-                      Save Changes
+                      <span className="hidden sm:inline">Save Changes</span>
+                      <span className="sm:hidden">Save</span>
                     </>
                   )}
                 </Button>
@@ -162,10 +163,11 @@ export function ImageViewerModal({
                 />
                 <Button
                   onClick={() => fileInputRef.current?.click()}
-                  className="bg-[#F2A024] hover:bg-[#E89015]"
+                  className="bg-[#F2A024] hover:bg-[#E89015] w-full sm:w-auto"
                 >
                   <Upload className="mr-2 h-4 w-4" />
-                  Change {imageType === "profile" ? "Profile Photo" : "Cover Photo"}
+                  <span className="hidden sm:inline">Change {imageType === "profile" ? "Profile Photo" : "Cover Photo"}</span>
+                  <span className="sm:hidden">Change Photo</span>
                 </Button>
               </>
             )}

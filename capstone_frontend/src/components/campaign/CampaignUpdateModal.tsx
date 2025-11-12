@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { buildApiUrl, getAuthToken, getStorageUrl } from "@/lib/api";
+import { buildApiUrl, getAuthToken, buildStorageUrl } from "@/lib/api";
 import { toast } from "sonner";
 import { Loader2, Upload, X } from "lucide-react";
 
@@ -51,7 +51,7 @@ export function CampaignUpdateModal({
         is_milestone: update.is_milestone,
       });
       if (update.image_path) {
-        setImagePreview(getStorageUrl(update.image_path) || null);
+        setImagePreview(buildStorageUrl(update.image_path) || null);
       }
     } else {
       resetForm();
@@ -141,7 +141,7 @@ export function CampaignUpdateModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-[calc(100vw-2rem)] sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{update ? "Edit Update" : "Add Campaign Update"}</DialogTitle>
         </DialogHeader>

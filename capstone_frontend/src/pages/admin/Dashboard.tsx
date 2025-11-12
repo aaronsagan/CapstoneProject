@@ -204,27 +204,27 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4 sm:space-y-6 md:space-y-8">
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex items-center justify-between"
+        className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
       >
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight text-foreground">
+        <div className="flex-1 min-w-0">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground">
             Admin Dashboard
           </h1>
-          <p className="text-muted-foreground mt-2 text-base">
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">
             Complete overview of your charity platform
           </p>
         </div>
-        <Button onClick={fetchDashboardData} variant="outline" size="sm" className="hover:scale-105 transition-transform">
+        <Button onClick={fetchDashboardData} variant="outline" size="sm" className="hover:scale-105 transition-transform shrink-0">
           <RefreshCw className="mr-2 h-4 w-4" />
-          Refresh
+          <span className="hidden sm:inline">Refresh</span>
         </Button>
       </motion.div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+      <div className="grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -234,16 +234,16 @@ export default function Dashboard() {
           onClick={() => navigate('/admin/users')}
         >
           <Card className="border-l-4 border-l-primary hover:shadow-lg transition-all duration-300">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Total Users</CardTitle>
+            <CardHeader className="pb-2 sm:pb-3">
+              <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground">Total Users</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pb-4">
               <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-4xl font-bold text-primary">{metrics?.total_users || 0}</div>
-                  <p className="text-xs text-muted-foreground mt-1">All registered users</p>
+                <div className="flex-1 min-w-0">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">{metrics?.total_users || 0}</div>
+                  <p className="text-xs text-muted-foreground mt-1 truncate">All registered users</p>
                 </div>
-                <Users className="h-12 w-12 text-primary opacity-70" />
+                <Users className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-primary opacity-70 shrink-0" />
               </div>
             </CardContent>
           </Card>
@@ -258,16 +258,16 @@ export default function Dashboard() {
           onClick={() => navigate('/admin/users')}
         >
           <Card className="border-l-4 border-l-secondary hover:shadow-lg transition-all duration-300">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Total Donors</CardTitle>
+            <CardHeader className="pb-2 sm:pb-3">
+              <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground">Total Donors</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pb-4">
               <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-4xl font-bold text-secondary">{metrics?.total_donors || 0}</div>
-                  <p className="text-xs text-muted-foreground mt-1">Registered donors</p>
+                <div className="flex-1 min-w-0">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">{metrics?.total_donors || 0}</div>
+                  <p className="text-xs text-muted-foreground mt-1 truncate">Registered donors</p>
                 </div>
-                <Heart className="h-12 w-12 text-secondary opacity-70" />
+                <Heart className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-secondary opacity-70 shrink-0" />
               </div>
             </CardContent>
           </Card>
@@ -282,16 +282,16 @@ export default function Dashboard() {
           onClick={() => navigate('/admin/charities')}
         >
           <Card className="border-l-4 border-l-accent-foreground hover:shadow-lg transition-all duration-300">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Charity Admins</CardTitle>
+            <CardHeader className="pb-2 sm:pb-3">
+              <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground">Charity Admins</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pb-4">
               <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-4xl font-bold text-accent-foreground">{metrics?.total_charity_admins || 0}</div>
-                  <p className="text-xs text-muted-foreground mt-1">Charity representatives</p>
+                <div className="flex-1 min-w-0">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-accent-foreground">{metrics?.total_charity_admins || 0}</div>
+                  <p className="text-xs text-muted-foreground mt-1 truncate">Charity representatives</p>
                 </div>
-                <Building2 className="h-12 w-12 text-accent-foreground opacity-70" />
+                <Building2 className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-accent-foreground opacity-70 shrink-0" />
               </div>
             </CardContent>
           </Card>
@@ -306,16 +306,16 @@ export default function Dashboard() {
           onClick={() => navigate('/admin/charities')}
         >
           <Card className="border-l-4 border-l-primary hover:shadow-lg transition-all duration-300">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Approved Charities</CardTitle>
+            <CardHeader className="pb-2 sm:pb-3">
+              <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground">Approved Charities</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pb-4">
               <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-4xl font-bold text-primary">{metrics?.charities || 0}</div>
-                  <p className="text-xs text-muted-foreground mt-1">Verified organizations</p>
+                <div className="flex-1 min-w-0">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">{metrics?.charities || 0}</div>
+                  <p className="text-xs text-muted-foreground mt-1 truncate">Verified organizations</p>
                 </div>
-                <CheckCircle className="h-12 w-12 text-primary opacity-70" />
+                <CheckCircle className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-primary opacity-70 shrink-0" />
               </div>
             </CardContent>
           </Card>
@@ -330,41 +330,41 @@ export default function Dashboard() {
           onClick={() => navigate('/admin/charities')}
         >
           <Card className="border-l-4 border-l-primary hover:shadow-lg transition-all duration-300">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Pending Verifications</CardTitle>
+            <CardHeader className="pb-2 sm:pb-3">
+              <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground">Pending Verifications</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pb-4">
               <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-4xl font-bold text-primary">{metrics?.pending_verifications || 0}</div>
-                  <p className="text-xs text-muted-foreground mt-1">Awaiting review</p>
+                <div className="flex-1 min-w-0">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">{metrics?.pending_verifications || 0}</div>
+                  <p className="text-xs text-muted-foreground mt-1 truncate">Awaiting review</p>
                 </div>
-                <AlertTriangle className="h-12 w-12 text-primary opacity-70" />
+                <AlertTriangle className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-primary opacity-70 shrink-0" />
               </div>
             </CardContent>
           </Card>
         </motion.div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2">
         {/* Left Column: Welcome Message + Pending Charities */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {/* Welcome Message */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <div className="bg-muted/50 rounded-lg p-6 border border-border">
+            <div className="bg-muted/50 rounded-lg p-4 sm:p-6 border border-border">
               <div className="flex items-center gap-3">
-                <div className="bg-primary/10 p-3 rounded-full border border-primary/20">
-                  <Heart className="h-6 w-6 text-primary" />
+                <div className="bg-primary/10 p-2 sm:p-3 rounded-full border border-primary/20 shrink-0">
+                  <Heart className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                 </div>
-                <div>
-                  <h2 className="text-xl font-bold text-foreground">
+                <div className="flex-1 min-w-0">
+                  <h2 className="text-lg sm:text-xl font-bold text-foreground">
                     Welcome to Admin Dashboard
                   </h2>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                     Empowering generosity, one verified charity at a time.
                   </p>
                 </div>
@@ -380,12 +380,12 @@ export default function Dashboard() {
           >
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-foreground">
-                  <Clock className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2 text-foreground text-base sm:text-lg">
+                  <Clock className="h-4 w-4 sm:h-5 sm:w-5" />
                   Pending Charity Verifications
                 </CardTitle>
               </CardHeader>
-              <CardContent className="pt-6">
+              <CardContent className="pt-4 sm:pt-6">
                 {pendingCharities.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">
                     <CheckCircle className="h-12 w-12 mx-auto mb-3 opacity-50" />
@@ -399,17 +399,17 @@ export default function Dashboard() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.8 + index * 0.1 }}
-                        className="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition-all hover:border-orange-300 bg-card"
+                        className="flex flex-col sm:flex-row sm:items-center gap-3 p-3 sm:p-4 border rounded-lg hover:shadow-md transition-all hover:border-orange-300 bg-card"
                       >
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-lg">{charity.name}</h4>
-                          <p className="text-sm text-muted-foreground">{charity.contact_email}</p>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold text-base sm:text-lg truncate">{charity.name}</h4>
+                          <p className="text-xs sm:text-sm text-muted-foreground truncate">{charity.contact_email}</p>
                           <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
-                            <Clock className="h-3 w-3" />
-                            Submitted {new Date(charity.created_at).toLocaleDateString()}
+                            <Clock className="h-3 w-3 shrink-0" />
+                            <span className="truncate">Submitted {new Date(charity.created_at).toLocaleDateString()}</span>
                           </p>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 shrink-0">
                           <Button
                             size="sm"
                             onClick={() => handleCharityAction(charity.id, 'approve')}
@@ -453,12 +453,12 @@ export default function Dashboard() {
         >
           <Card className="hover:shadow-lg transition-shadow">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-foreground">
-                <Users className="h-5 w-5" />
+              <CardTitle className="flex items-center gap-2 text-foreground text-base sm:text-lg">
+                <Users className="h-4 w-4 sm:h-5 sm:w-5" />
                 Recent User Registrations
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-6">
+            <CardContent className="pt-4 sm:pt-6">
               {recentUsers.length === 0 ? (
                 <div className="text-center py-8 text-muted-foreground">
                   <Users className="h-12 w-12 mx-auto mb-3 opacity-50" />
@@ -472,21 +472,21 @@ export default function Dashboard() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.7 + index * 0.1 }}
-                      className="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition-all hover:border-blue-300 bg-card"
+                      className="flex flex-col sm:flex-row sm:items-center gap-3 p-3 sm:p-4 border rounded-lg hover:shadow-md transition-all hover:border-blue-300 bg-card"
                     >
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-lg">{user.name}</h4>
-                        <p className="text-sm text-muted-foreground">{user.email}</p>
-                        <div className="flex items-center gap-2 mt-2">
-                          <Badge variant={user.role === 'donor' ? 'default' : 'secondary'} className="capitalize">
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold text-base sm:text-lg truncate">{user.name}</h4>
+                        <p className="text-xs sm:text-sm text-muted-foreground truncate">{user.email}</p>
+                        <div className="flex items-center gap-2 mt-2 flex-wrap">
+                          <Badge variant={user.role === 'donor' ? 'default' : 'secondary'} className="capitalize text-xs">
                             {user.role.replace('_', ' ')}
                           </Badge>
-                          <Badge variant={user.status === 'active' ? 'default' : 'destructive'} className="capitalize">
+                          <Badge variant={user.status === 'active' ? 'default' : 'destructive'} className="capitalize text-xs">
                             {user.status}
                           </Badge>
                         </div>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 shrink-0">
                         {user.status === 'active' ? (
                           <Button
                             size="sm"
@@ -558,7 +558,7 @@ export default function Dashboard() {
                       stroke="hsl(var(--muted-foreground))"
                     />
                     <Tooltip 
-                      content={<CustomChartTooltip type="registrations" />}
+                      content={<CustomChartTooltip />}
                     />
                     <Legend />
                     <Line 
